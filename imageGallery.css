@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*Box size remains same, after adding padding & border but content size remains same. */
+}
+
+#wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.container {
+    height: 100%;   /*Acc to wrapper*/
+    max-width: 1200px; /*Content will be filled upto 1200px height post which it will start overflowing*/
+    margin: 0 auto; /*Margin is set from left and right in such a way that content comes in the middle/ center*/
+    padding: 20px; /*Space between border and content*/
+}
+
+h1 {
+    margin: 20px 100px; /*20px is top and bottom & 100px is right and left margins*/
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+}
+
+.gallery {
+    display: flex; /*To handle space distribution among elements, created flex*/
+    flex-wrap: wrap; /*So that all elements won't allign horizontally. They should also come in another rows.*/
+    justify-content: space-between; /*We have spaces*/
+}
+
+.card {
+    width: 32%; /*Explicitly set 32% bcz we have 100% width and 3 images will take 32+32+32% , remaining 4% will be used for spacing between them*/
+    position: relative; /*Since there is overlapping, therfore relative*/
+    margin-bottom: 20px;
+    border-radius: 10px; /*Corners are rounded*/
+    overflow: hidden; /*Hide if there is any kind of overflow (either x or y)*/
+}
+
+.card img {     /*img's parent is card*/
+    width: 100%;
+    height: 100%;   /*After mentioning height, caption is hidded meaning it's in layering and is behind image. We'll bring it over*/
+    filter: grayscale(100%);
+    box-shadow: 0 0 20px #333;
+    object-fit: cover;  /*optional*/
+}
+
+.card:hover {
+    transform: scale(1.03); /*To increase size*/
+    transition: 0.5s;
+    filter: drop-shadow(0 0 10px #333); /*Can be done with box-shadow as well. 2 properties to be added in here: spread radius and blur effect*/
+}
+
+.card:hover img {
+    filter: grayscale(0%); /*Image color reappears on hovering */
+}
+
+/*Now styling text which is hidden till here. "img1, img2, img3, img4.."*/
+
+.card figcaption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px;
+    width: 100%; /*100% of parent that is card*/
+    height: 20%; /*20% of parent that is card*/
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    opacity: 0; /*Transparency full 100% (text dikhega hi nahi)*/
+    border-radius: 0 0 10px 10px;   /*rounded efffect around corners*/
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: 0.3s;
+}
+
+.card:hover figcaption {
+    opacity: 1;     /*Text should be visible upon over*/
+    transform: scale(1.03);
+}

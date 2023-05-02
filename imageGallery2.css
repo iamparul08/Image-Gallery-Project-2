@@ -1,0 +1,93 @@
+/* @import url(); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+html, body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f4;
+    /* background-image: ; */
+    color: #333;
+}
+
+.container {
+    
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /*To place in center; margin from left and right are same*/
+    padding: 20px; /*space between border and content */
+}
+
+.container h1 {
+    margin: 20px 100px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+}
+
+gallery {
+    display: flex; /*Now elements will come along main axis (by default)*/
+    flex-wrap: wrap; /*since display is flex, all elements will allign horizontally/ main axis by default and overflowY is hidden so you won't be able to scroll right (which is also not needed). Therefore, wrap so that elements come in next line*/
+    justify-content: space-between;
+}
+
+.card {
+    width: 32%; /*Total width is 100%. Now each 32 (32+32+32=96) Rest 4% will be used for spacing*/
+    position: relative; /*Since text will overlap*/
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.card img {
+    height: 100%; 
+    width: 100%;
+    filter: grayscale();
+    box-shadow: 0 0 20px #333;
+    object-fit: cover;
+}
+
+.card:hover {
+    transform: scale(1.03); /*To increase size*/
+    transition: 0.5s;
+    filter: drop-shadow(0 0 10px #333); /*Can be done with box-shadow as well. 2 properties to be added in here: spread radius and blur effect*/
+}
+
+.card:hover img {
+    filter: grayscale(0%); /*Image color reappears on hovering */
+}
+
+/*Now styling text which is hidden till here. "img1, img2, img3, img4.."*/
+
+.card figcaption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px;
+    width: 100%; /*100% of parent that is card*/
+    height: 20%; /*20% of parent that is card*/
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    opacity: 0; /*Transparency full 100% (text dikhega hi nahi)*/
+    border-radius: 0 0 10px 10px;   /*rounded efffect around corners*/
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: 0.3s;
+}
+
+.card:hover figcaption {
+    opacity: 1;     /*Text should be visible upon over*/
+    transform: scale(1.03);
+}
+
+
